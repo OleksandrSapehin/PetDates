@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>My Pets</h2>
+<div th:each="pet : ${pets}" class="car-container">
+  <div class="pet">
+    <div th:each="image : ${pet.images}">
+      <img th:src="@{'/images/' + ${image.id}}" alt="Image" style="max-width: 200px; max-height: 200px;"/>
+    </div>
+    <p><strong>Name:</strong> <span th:text="${pet.name}"></span></p>
+    <p><strong>Age:</strong> <span th:text="${pet.age}"></span></p>
+    <p><strong>Gender:</strong> <span th:text="${pet.gender}"></span></p>
+    <form th:action="@{/deletePet}" th:method="POST">
+      <input type="hidden" th:name="petId" th:value="${pet.id}" />
+      <button type="submit">Delete pet</button>
+    </form>
+  </div>
+</div>
+<a th:href="@{/addNewPet}" class="btn btn-primary">Add new pet</a>
+<a th:href="@{/myAccount}" class="btn btn-primary">Back to account</a>
+
+</body>
+</html>

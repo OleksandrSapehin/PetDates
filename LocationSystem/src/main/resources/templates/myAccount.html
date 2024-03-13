@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>Account Information :</h2>
+<div th:method="GET" th:action="@{/myAccount}" th:object="${authPerson}">
+    <p><strong>Name:</strong> <span th:text="${authPerson.getName()}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${authPerson.getEmail()}"></span></p>
+    <p><strong>Location:</strong> <span th:text="${authPerson.getLocation()}"></span></p>
+</div>
+<div>
+    <h2>Images:</h2>
+    <div th:each="image : ${images}">
+        <img th:src="@{'/images/' + ${image.id}}" alt="Image" style="max-width: 200px; max-height: 200px;"/>
+    </div>
+</div>
+<form th:action="@{/uploadImageForPerson}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*">
+    <button type="submit">Upload Image</button>
+</form>
+<a th:href="@{/myPets}">My pets</a>
+<a th:href="@{/mainPage}" class="btn btn-primary">Main page</a>
+<a th:href="@{/myFriends}">My friends</a>
+</body>
+</html>

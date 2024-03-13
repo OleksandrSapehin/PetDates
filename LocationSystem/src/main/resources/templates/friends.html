@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>My friends</h2>
+<div th:each="friend : ${friends}" class="car-container">
+    <div class="friend">
+        <p><strong>Name:</strong> <span th:text="${friend.name}"></span></p>
+        <p><strong>Location:</strong> <span th:text="${friend.location}"></span></p>
+    </div>
+</div>
+<a th:href="@{/myAccount}" class="btn btn-primary">Account</a>
+</body>
+</html>
